@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Canvas Copy Pack — Principles-Adjacent Reference Sheet</title>
+
+  <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Page-specific styles that match your palette -->
+  <style>
+    /* We keep this page "single panel" (not the #portfolio/#socials/#about tab logic) */
+    .panel { display: block; }
+
+    .copyPack{
+      display: grid;
+      gap: 14px;
+    }
+
+    .copyPack__actions{
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .copyBtn{
+      cursor: pointer;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      box-shadow: var(--shadow2);
+      transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+      justify-self: start;
+    }
+    .copyBtn:hover{
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.20);
+      transform: translateY(-1px);
+    }
+    .copyBtn:focus-visible{
+      outline: 3px solid rgba(120,140,255,0.55);
+      outline-offset: 2px;
+    }
+    .copyBtn:active{
+      transform: translateY(0px);
+    }
+
+    .copyStatus{
+      color: var(--muted);
+      font-size: 14px;
+      justify-self: end;
+      min-height: 1.2em;
+      text-align: right;
+    }
+
+    .codeBox{
+      width: 100%;
+      min-height: 520px;
+      resize: vertical;
+
+      padding: 14px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.28);
+      color: var(--text);
+      box-shadow: var(--shadow2);
+
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      line-height: 1.35;
+      white-space: pre;
+      outline: none;
+    }
+    .codeBox:focus{
+      border-color: rgba(120,140,255,0.35);
+    }
+
+    .steps{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      display: grid;
+      gap: 6px;
+    }
+
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      border: 1px solid rgba(255,255,255,0.16);
+      border-bottom-width: 2px;
+      border-radius: 8px;
+      padding: 1px 8px;
+      background: rgba(0,0,0,0.22);
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .smallNote{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .pill{
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-size: 12px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Match your portfolio topbar -->
+  <header class="topbar">
+    <nav class="nav" aria-label="Site">
+      <a class="nav__link" href="./index.html#portfolio">Portfolio</a>
+      <a class="nav__link" href="./index.html#socials">Socials</a>
+      <a class="nav__link" href="./index.html#about">About</a>
+      <a class="nav__link" href="./canvas-copy.html" aria-current="page">Canvas Copy Pack</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1 class="hero__name">Canvas Copy Pack</h1>
+      <p class="hero__tagline">
+        One click → paste into Canvas → done. <span class="pill">No district installs</span>
+      </p>
+    </section>
+
+    <section class="panel copyPack" id="copyPack">
+      <div class="panel__header">
+        <h2 class="panel__title">Instructions</h2>
+        <p class="panel__subtitle">
+          Use the HTML Editor in Canvas. The code below is formatted to survive sanitizers.
+        </p>
+      </div>
+
+      <ol class="steps">
+        <li>Click <strong>Copy Canvas HTML</strong>.</li>
+        <li>In Canvas: <strong>Edit</strong> → <strong>HTML Editor</strong>.</li>
+        <li>Paste → <strong>Save</strong>.</li>
+      </ol>
+
+      <p class="smallNote">
+        If your browser blocks clipboard access, click inside the box, then
+        <span class="kbd">Ctrl</span> + <span class="kbd">A</span>,
+        <span class="kbd">Ctrl</span> + <span class="kbd">C</span>
+        (or <span class="kbd">Cmd</span> on Mac).
+      </p>
+
+      <div class="copyPack__actions">
+        <button id="copyBtn" class="copyBtn" type="button">Copy Canvas HTML</button>
+        <div id="status" class="copyStatus" aria-live="polite"></div>
+      </div>
+
+      <textarea
+        id="canvasCode"
+        class="codeBox"
+        spellcheck="false"
+        readonly
+      >PASTE YOUR CANVAS-SANITIZED HTML HERE</textarea>
+
+      <p class="smallNote">
+        Tip: keep the Canvas version inline-styled; for your personal website, use the cleaner class-based version.
+      </p>
+    </section>
+
+    <footer class="footer">
+      Principles-Adjacent Reference Sheet • Copy Pack
+    </footer>
+  </main>
+
+  <script>
+    const btn = document.getElementById('copyBtn');
+    const box = document.getElementById('canvasCode');
+    const status = document.getElementById('status');
+
+    function setStatus(msg){
+      status.textContent = msg;
+    }
+
+    btn.addEventListener('click', async () => {
+      const text = box.value.trim();
+
+      if (!text || text === "PASTE YOUR CANVAS-SANITIZED HTML HERE") {
+        setStatus("Paste your Canvas HTML into the box first.");
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(text);
+        setStatus("Copied!");
+        setTimeout(() => setStatus(""), 1400);
+      } catch (e) {
+        box.focus();
+        box.select();
+        setStatus("Clipboard blocked — text selected. Press Ctrl/Cmd + C.");
+      }
+    });
+  </script>
+</body>
+</html>
