@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Primary">
+      <a class="nav__link" href="#portfolio">Portfolio</a>
+      <a class="nav__link" href="#socials">Socials</a>
+      <a class="nav__link" href="#about">About</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-label="Intro">
+      <h1 class="hero__name">[MY NAME]</h1>
+      <p class="hero__tagline">A clean, linkable home base for projects, socials, and a quick bio.</p>
+    </section>
+
+    <!--
+      CSS-only section switching:
+      - default shows Portfolio
+      - :target shows the selected section and hides the others
+    -->
+
+    <section id="portfolio" class="panel panel--portfolio" aria-label="Portfolio">
+      <div class="panel__header">
+        <h2 class="panel__title">Projects</h2>
+        <p class="panel__subtitle">Six tiles (3 per row). Replace the images with screenshots of each destination page.</p>
+      </div>
+
+      <div class="grid">
+        <!-- Row 1 -->
+        <a class="card" href="resume.html" aria-label="Resume">
+          <div class="card__media">
+            <img class="card__img" src="images/resume.jpg" alt="Preview of Resume page" />
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Resume</h3>
+            <p class="card__meta">resume.html</p>
+          </div>
+        </a>
+
+        <a class="card" href="cpars.html" aria-label="CPARS project">
+          <div class="card__media">
+            <img class="card__img" src="images/cpars.jpg" alt="Preview of CPARS page" />
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">CPARS</h3>
+            <p class="card__meta">cpars.html</p>
+          </div>
+        </a>
+
+        <a class="card" href="pars.html" aria-label="PARS project">
+          <div class="card__media">
+            <img class="card__img" src="images/pars.jpg" alt="Preview of PARS page" />
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">PARS</h3>
+            <p class="card__meta">pars.html</p>
+          </div>
+        </a>
+
+        <!-- Row 2 -->
+        <a class="card" href="fp1-3.html" aria-label="Future Project 1">
+          <div class="card__media">
+            <img class="card__img" src="images/fp1.jpg" alt="Preview of Future Project 1 page" />
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Future Project 1</h3>
+            <p class="card__meta">fp1-3.html</p>
+          </div>
+        </a>
+
+        <a class="card" href="fp2-3.html" aria-label="Future Project 2">
+          <div class="card__media">
+            <img class="card__img" src="images/fp2.jpg" alt="Preview of Future Project 2 page" />
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Future Project 2</h3>
+            <p class="card__meta">fp2-3.html</p>
+          </div>
+        </a>
+
+        <a class="card" href="fp3-3.html" aria-label="Future Project 3">
+          <div class="card__media">
+            <img class="card__img" src="images/fp3.jpg" alt="Preview of Future Project 3 page" />
+          </div>
+          <div class="card__body">
+            <h3 class="card__title">Future Project 3</h3>
+            <p class="card__meta">fp3-3.html</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section id="socials" class="panel panel--socials" aria-label="Socials">
+      <div class="panel__header">
+        <h2 class="panel__title">Socials</h2>
+        <p class="panel__subtitle">Drop your links here.</p>
+      </div>
+
+      <div class="infoCards">
+        <div class="infoCard">
+          <h3 class="infoCard__title">Links</h3>
+          <ul class="list">
+            <li><a class="link" href="#" target="_blank" rel="noreferrer">GitHub</a></li>
+            <li><a class="link" href="#" target="_blank" rel="noreferrer">LinkedIn</a></li>
+            <li><a class="link" href="#" target="_blank" rel="noreferrer">YouTube / Twitch</a></li>
+            <li><a class="link" href="#" target="_blank" rel="noreferrer">Email</a></li>
+          </ul>
+        </div>
+
+        <div class="infoCard">
+          <h3 class="infoCard__title">Now</h3>
+          <p class="infoCard__text">
+            Add a short “what I’m building right now” blurb here.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="panel panel--about" aria-label="About">
+      <div class="panel__header">
+        <h2 class="panel__title">About</h2>
+        <p class="panel__subtitle">A quick bio that still looks sharp.</p>
+      </div>
+
+      <div class="infoCards">
+        <div class="infoCard">
+          <h3 class="infoCard__title">Bio</h3>
+          <p class="infoCard__text">
+            Write 3–6 sentences about what you do, what you’re into, and what you’re building.
+          </p>
+        </div>
+
+        <div class="infoCard">
+          <h3 class="infoCard__title">Focus</h3>
+          <ul class="list">
+            <li>Project / product area #1</li>
+            <li>Project / product area #2</li>
+            <li>Project / product area #3</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p class="footer__text">© <span>[MY NAME]</span> — built with HTML + CSS Grid.</p>
+    </footer>
+  </main>
+</body>
+</html>
