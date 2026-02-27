@@ -116,14 +116,25 @@ body{
   font-size: 14px;
 }
 
-/* CSS-only "tabs": show only the targeted panel.
-   Default: show Portfolio, hide Socials/About.
+/* CSS-only tabs (no JS)
+   - Default: show #portfolio
+   - If any #hash target exists: show ONLY the targeted panel
 */
-#socials, #about { display: none; }
-:target { display: block; }
-#socials:target ~ #about { display: none; } /* just in case */
-#portfolio:target ~ #socials,
-#portfolio:target ~ #about { display: none; }
+
+/* 1) Hide all panels by default */
+.panel { display: none; }
+
+/* 2) Default state (no target): show portfolio */
+#portfolio { display: block; }
+
+/* 3) If the URL has a target, hide the default portfolio... */
+body:has(:target) #portfolio { display: none; }
+
+/* ...and show the targeted panel only */
+.panel:target { display: block; }
+
+/* If portfolio itself is targeted, show it */
+#portfolio:target { display: block; }
 
 /* Projects grid */
 .grid{
